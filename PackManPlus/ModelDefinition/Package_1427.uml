@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="01e644d8-010e-441b-a36b-9a87028b6a07"
+  name="Comp476A3"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="861cf589-71dc-474c-8fd4-71850b8c73c8"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DComp476A3"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <enumeration
+        Id="14016465-cc1f-48d3-be8b-e11815089691"
+        name="PlayerState"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="ff6aa602-f4a8-417e-a80c-f891b416ed97"
+            handle="viewcode://./CodeSchema_Enum?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fcelestrial%2FDocuments%2FPacManAssignment%2FPacMan%2FTemp%2FUnityVS_bin%2FDebug%2FAssembly-CSharp.dll Namespace%3DComp476A3 Type%3DPlayerState"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="cc810ae0-4c56-41fd-a501-a489f389f39b"
+            name="enum"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="fe3be28a-edf5-4b2e-9eea-1f0e06d62d26">
+                <propertyInstance
+                  Id="68e77476-d280-4a61-9feb-33485f5a3de2"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="bc6e82bd-de79-45b3-adb3-baed1c84cf6c">
+                <propertyInstance
+                  Id="72c7f856-310f-4867-ac1d-ac024877b034"
+                  name="BaseType"
+                  value="int" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="383e8d96-65b5-4808-8426-90a1775221e3">
+                <propertyInstance
+                  Id="c436748c-3e87-4d9a-945c-da1657134d52"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <ownedLiterals>
+          <enumerationLiteral
+            Id="6d988ab1-9f1e-49e1-aa4c-7f3a52e5c1ff"
+            name="NORMAL">
+            <referencesInternal>
+              <reference
+                Id="0b401793-2f67-41ec-9bbb-cee511e10368"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fcelestrial%2FDocuments%2FPacManAssignment%2FPacMan%2FTemp%2FUnityVS_bin%2FDebug%2FAssembly-CSharp.dll Namespace%3DComp476A3 Type%3DPlayerState Member%3DNORMAL"
+                tag="ViewCode" />
+            </referencesInternal>
+          </enumerationLiteral>
+          <enumerationLiteral
+            Id="7ad2b75c-2941-4545-978a-f8a3fd6a6e91"
+            name="SPEEDUP">
+            <referencesInternal>
+              <reference
+                Id="7cdc507d-61e2-41cd-9804-f5146481d202"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fcelestrial%2FDocuments%2FPacManAssignment%2FPacMan%2FTemp%2FUnityVS_bin%2FDebug%2FAssembly-CSharp.dll Namespace%3DComp476A3 Type%3DPlayerState Member%3DSPEEDUP"
+                tag="ViewCode" />
+            </referencesInternal>
+          </enumerationLiteral>
+        </ownedLiterals>
+      </enumeration>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <enumeration
+        Id="abb2a6ba-ed3e-47c0-b865-dd39eb4595bf"
+        name="PlayerDirection"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="efbaa544-2821-443e-a97b-a98944736035"
+            handle="viewcode://./CodeSchema_Enum?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fcelestrial%2FDocuments%2FPacManAssignment%2FPacMan%2FTemp%2FUnityVS_bin%2FDebug%2FAssembly-CSharp.dll Namespace%3DComp476A3 Type%3DPlayerDirection"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="76ffb4ef-9cb6-442b-a15c-4a3c29782175"
+            name="enum"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="cb466819-ff5a-4064-8183-885b93c76d0e">
+                <propertyInstance
+                  Id="4f653601-d3ca-459b-a8c8-e1793d94891d"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="cae65790-f9fb-49c3-ab69-b183dfe705a6">
+                <propertyInstance
+                  Id="9b962d8f-9139-4b3b-9657-7a2156b615d8"
+                  name="BaseType"
+                  value="int" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="fc228e78-a8c9-4a06-a4dd-3328826cbf0a">
+                <propertyInstance
+                  Id="ed64dddb-b4e8-4955-a487-72be8c5bab61"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <ownedLiterals>
+          <enumerationLiteral
+            Id="9dd1c928-5ba5-451d-9099-3dd5de8eeaee"
+            name="UP">
+            <referencesInternal>
+              <reference
+                Id="045360da-20ba-400f-ae13-8d33e4c6d033"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fcelestrial%2FDocuments%2FPacManAssignment%2FPacMan%2FTemp%2FUnityVS_bin%2FDebug%2FAssembly-CSharp.dll Namespace%3DComp476A3 Type%3DPlayerDirection Member%3DUP"
+                tag="ViewCode" />
+            </referencesInternal>
+          </enumerationLiteral>
+          <enumerationLiteral
+            Id="b601a2e9-b4db-4f85-8994-6bf5e8db35e1"
+            name="DOWN">
+            <referencesInternal>
+              <reference
+                Id="05007d62-471b-4ee1-9b85-4bd924648962"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fcelestrial%2FDocuments%2FPacManAssignment%2FPacMan%2FTemp%2FUnityVS_bin%2FDebug%2FAssembly-CSharp.dll Namespace%3DComp476A3 Type%3DPlayerDirection Member%3DDOWN"
+                tag="ViewCode" />
+            </referencesInternal>
+          </enumerationLiteral>
+          <enumerationLiteral
+            Id="bd24973e-3fb1-47f3-890b-f948d78b99eb"
+            name="LEFT">
+            <referencesInternal>
+              <reference
+                Id="83005143-6686-4363-90fe-7d0f593ea34c"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fcelestrial%2FDocuments%2FPacManAssignment%2FPacMan%2FTemp%2FUnityVS_bin%2FDebug%2FAssembly-CSharp.dll Namespace%3DComp476A3 Type%3DPlayerDirection Member%3DLEFT"
+                tag="ViewCode" />
+            </referencesInternal>
+          </enumerationLiteral>
+          <enumerationLiteral
+            Id="297b934b-0f1d-4c71-b818-fb6bea4876da"
+            name="RIGHT">
+            <referencesInternal>
+              <reference
+                Id="5f0650f8-c5d5-4ff8-a831-705f6af0d195"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fcelestrial%2FDocuments%2FPacManAssignment%2FPacMan%2FTemp%2FUnityVS_bin%2FDebug%2FAssembly-CSharp.dll Namespace%3DComp476A3 Type%3DPlayerDirection Member%3DRIGHT"
+                tag="ViewCode" />
+            </referencesInternal>
+          </enumerationLiteral>
+        </ownedLiterals>
+      </enumeration>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

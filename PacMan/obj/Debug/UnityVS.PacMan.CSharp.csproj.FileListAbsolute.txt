@@ -1,0 +1,8 @@
+C:\Users\celestrial\Documents\PacManAssignment\PacMan\Temp\UnityVS_bin\Debug\Assembly-CSharp.dll
+C:\Users\celestrial\Documents\PacManAssignment\PacMan\Temp\UnityVS_bin\Debug\Assembly-CSharp.pdb
+C:\Users\celestrial\Documents\PacManAssignment\PacMan\obj\Debug\UnityVS.PacMan.CSharp.csprojResolveAssemblyReference.cache
+C:\Users\celestrial\Documents\PacManAssignment\PacMan\obj\Debug\Assembly-CSharp.dll
+C:\Users\celestrial\Documents\PacManAssignment\PacMan\obj\Debug\Assembly-CSharp.pdb
+C:\Users\celestrial\Documents\PacManAssignment\PacMan\Temp\UnityVS_bin\Debug\UnityEditor.dll
+C:\Users\celestrial\Documents\PacManAssignment\PacMan\Temp\UnityVS_bin\Debug\UnityEngine.dll
+C:\Users\celestrial\Documents\PacManAssignment\PacMan\Temp\UnityVS_bin\Debug\UnityEngine.UI.dll

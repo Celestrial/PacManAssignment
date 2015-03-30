@@ -1,0 +1,5 @@
+C:\Users\celestrial\Documents\PacManAssignment\PackManPlusLib\obj\Debug\PackManPlusLib.csprojResolveAssemblyReference.cache
+C:\Users\celestrial\Documents\PacManAssignment\PackManPlusLib\bin\Debug\PackManPlusLib.dll
+C:\Users\celestrial\Documents\PacManAssignment\PackManPlusLib\bin\Debug\PackManPlusLib.pdb
+C:\Users\celestrial\Documents\PacManAssignment\PackManPlusLib\obj\Debug\PackManPlusLib.dll
+C:\Users\celestrial\Documents\PacManAssignment\PackManPlusLib\obj\Debug\PackManPlusLib.pdb
