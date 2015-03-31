@@ -6,3 +6,6 @@ C:\Users\celestrial\Documents\PacManAssignment\PacMan\obj\Debug\Assembly-CSharp.
 C:\Users\celestrial\Documents\PacManAssignment\PacMan\Temp\UnityVS_bin\Debug\UnityEditor.dll
 C:\Users\celestrial\Documents\PacManAssignment\PacMan\Temp\UnityVS_bin\Debug\UnityEngine.dll
 C:\Users\celestrial\Documents\PacManAssignment\PacMan\Temp\UnityVS_bin\Debug\UnityEngine.UI.dll
+C:\Users\celestrial\Documents\PacManAssignment\PacMan\Temp\UnityVS_bin\Debug\UnityEngine.xml
+C:\Users\celestrial\Documents\PacManAssignment\PacMan\Temp\UnityVS_bin\Debug\UnityEditor.xml
+C:\Users\celestrial\Documents\PacManAssignment\PacMan\Temp\UnityVS_bin\Debug\UnityEngine.UI.xml
