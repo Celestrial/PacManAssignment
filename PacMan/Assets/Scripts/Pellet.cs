@@ -6,7 +6,7 @@ namespace Comp476A3
     public class Pellet : MonoBehaviour
     {
         public const float RAY_LENGTH = 0.02f;
-        GameObject[] neighbours = new GameObject[4]; //ORDER IS: UP, RIGHT, DOWN, LEFT
+        public GameObject[] neighbours = new GameObject[4]; //ORDER IS: UP, RIGHT, DOWN, LEFT
         public bool Special = false;
         float timer = 0;
         // Use this for initialization

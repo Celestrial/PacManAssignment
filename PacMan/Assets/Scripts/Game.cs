@@ -9,12 +9,17 @@ namespace Comp476A3
         public GameObject pacWoman;
         public GameObject gameboard;
         Board boardScript;
+        bool isServer = true;
         // Use this for initialization
         void Start()
         {
             boardScript = gameboard.GetComponent<Board>();
-            Instantiate(pacMan, boardScript.startPos1.transform.position, Quaternion.LookRotation(Vector3.up));
-            Instantiate(pacWoman, boardScript.startPos2.transform.position, Quaternion.LookRotation(Vector3.up));
+            GameObject tempPacMan = (GameObject)Instantiate(pacMan, boardScript.startPos1.transform.position, Quaternion.LookRotation(Vector3.up));
+            GameObject tempPacWoman = (GameObject)Instantiate(pacWoman, boardScript.startPos2.transform.position, Quaternion.LookRotation(Vector3.up));
+            if (isServer)
+                tempPacMan.GetComponent<Player>().setAvatar(pacMan);
+            else
+                tempPacMan.GetComponent<Player>().setAvatar(pacWoman);
         }
 
         // Update is called once per frame
