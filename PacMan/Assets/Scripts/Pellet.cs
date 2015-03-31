@@ -8,7 +8,9 @@ namespace Comp476A3
         public const float RAY_LENGTH = 0.02f;
         public GameObject[] neighbours = new GameObject[4]; //ORDER IS: UP, RIGHT, DOWN, LEFT
         public bool Special = false;
+        public bool eaten = false;
         float timer = 0;
+
         // Use this for initialization
         void Start()
         {
@@ -18,14 +20,43 @@ namespace Comp476A3
         // Update is called once per frame
         void Update()
         {
-            //Debug.DrawLine(transform.position, transform.position + transform.up * RAY_LENGTH, Color.magenta);
-            //Debug.DrawLine(transform.position, transform.position + transform.right * RAY_LENGTH, Color.blue);
-            //Debug.DrawLine(transform.position, transform.position - transform.up * RAY_LENGTH, Color.green);
-            //Debug.DrawLine(transform.position, transform.position - transform.right * RAY_LENGTH, Color.red);
+            //DebugLines();
 
         }
 
+        void OnTriggerEnter(Collider other)
+        {
+            if (Special && !eaten)
+            {
+                other.GetComponent<Player>().speedUp();
+                if (other.name == "PacManPC(Clone)")
+                    Game.pacManScore += 5;
+                else
+                    Game.pacWomanScore += 5;
+            }
+            else if (!eaten)
+            {
+                if (other.name == "PacManPC(Clone)")
+                    Game.pacManScore += 1;
+                else
+                    Game.pacWomanScore += 1;
+            }
+            eaten = true;
+            transform.renderer.enabled = false;
+        }
+
+        private void DebugLines()
+        {
+            Debug.DrawLine(transform.position, transform.position + transform.up * RAY_LENGTH, Color.magenta);
+            Debug.DrawLine(transform.position, transform.position + transform.right * RAY_LENGTH, Color.blue);
+            Debug.DrawLine(transform.position, transform.position - transform.up * RAY_LENGTH, Color.green);
+            Debug.DrawLine(transform.position, transform.position - transform.right * RAY_LENGTH, Color.red);
+        }
         void FixedUpdate()
+        {
+            colorFlashSpeed();
+        }
+        private void colorFlashSpeed()
         {
             if (Special && timer > .1f)
             {
@@ -37,7 +68,6 @@ namespace Comp476A3
                 timer += Time.deltaTime;
             }
         }
-
         void colorFlash()
         {
             Vector3 color = new Vector3(Random.RandomRange(0f, 1f), Random.RandomRange(0f, 1f), Random.RandomRange(0f, 1f));
