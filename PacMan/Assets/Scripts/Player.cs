@@ -39,6 +39,8 @@ namespace Comp476A3
         {
             pacManStartPos = GameObject.Find("Plane.163");
             pacWomanStartPos = GameObject.Find("Plane.085");
+            playerState = PlayerState.NORMAL;
+            direction = PlayerDirection.UP;
             if (this.name == "PacManPC(Clone)")
             {
                 SetOrigin(pacManStartPos);
@@ -47,8 +49,7 @@ namespace Comp476A3
             {
                 SetOrigin(pacWomanStartPos);
             }
-            playerState = PlayerState.NORMAL;
-            direction = PlayerDirection.UP;
+            
         }
 
         // Update is called once per frame
@@ -194,11 +195,30 @@ namespace Comp476A3
         {
             destination = target;
         }
-        private void SetOrigin(GameObject org)
+        public void SetOrigin(GameObject org)
         {
             transform.position = org.transform.position;
             Origin = org;
-            destination = Origin.GetComponent<Pellet>().neighbours[0];
+            switch (direction)
+            {
+                case PlayerDirection.UP:
+                    destination = Origin.GetComponent<Pellet>().neighbours[0];
+                    break;
+
+                case PlayerDirection.RIGHT:
+                    destination = Origin.GetComponent<Pellet>().neighbours[1];
+                    break;
+
+                case PlayerDirection.DOWN:
+                    destination = Origin.GetComponent<Pellet>().neighbours[2];
+                    break;
+
+                case PlayerDirection.LEFT:
+                    destination = Origin.GetComponent<Pellet>().neighbours[3];
+                    break;
+
+                //destination = Origin.GetComponent<Pellet>().neighbours[0];
+            }
         }
         private void restoreMovement()
         {
