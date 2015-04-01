@@ -1,0 +1,13 @@
+C:\Users\celestrial\Documents\PacManAssignment\PacMan\Temp\UnityVS_bin\Debug\Assembly-CSharp-firstpass.dll
+C:\Users\celestrial\Documents\PacManAssignment\PacMan\Temp\UnityVS_bin\Debug\Assembly-CSharp-firstpass.pdb
+C:\Users\celestrial\Documents\PacManAssignment\PacMan\Temp\UnityVS_bin\Debug\Photon3Unity3D.dll
+C:\Users\celestrial\Documents\PacManAssignment\PacMan\Temp\UnityVS_bin\Debug\UnityEditor.dll
+C:\Users\celestrial\Documents\PacManAssignment\PacMan\Temp\UnityVS_bin\Debug\UnityEngine.dll
+C:\Users\celestrial\Documents\PacManAssignment\PacMan\Temp\UnityVS_bin\Debug\UnityEngine.UI.dll
+C:\Users\celestrial\Documents\PacManAssignment\PacMan\Temp\UnityVS_bin\Debug\UnityEngine.xml
+C:\Users\celestrial\Documents\PacManAssignment\PacMan\Temp\UnityVS_bin\Debug\UnityEditor.xml
+C:\Users\celestrial\Documents\PacManAssignment\PacMan\Temp\UnityVS_bin\Debug\UnityEngine.UI.xml
+C:\Users\celestrial\Documents\PacManAssignment\PacMan\Temp\UnityVS_bin\Debug\Photon3Unity3D.xml
+C:\Users\celestrial\Documents\PacManAssignment\PacMan\obj\Debug\UnityVS.PacMan.CSharp.Plugins.csprojResolveAssemblyReference.cache
+C:\Users\celestrial\Documents\PacManAssignment\PacMan\obj\Debug\Assembly-CSharp-firstpass.dll
+C:\Users\celestrial\Documents\PacManAssignment\PacMan\obj\Debug\Assembly-CSharp-firstpass.pdb

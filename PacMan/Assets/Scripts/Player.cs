@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace Comp476A3
 {
-    public class Player : MonoBehaviour {
+    public class Player : Photon.MonoBehaviour {
 
         GameObject Avatar;
 
@@ -37,6 +37,7 @@ namespace Comp476A3
         // Use this for initialization
         void Start()
         {
+            photonView.RPC("addPlayer", PhotonTargets.OthersBuffered);
             pacManStartPos = GameObject.Find("Plane.163");
             pacWomanStartPos = GameObject.Find("Plane.085");
             playerState = PlayerState.NORMAL;
@@ -55,14 +56,20 @@ namespace Comp476A3
         // Update is called once per frame
         void Update()
         {
-            getInput();
-            boostManager();
+            if (photonView.isMine)
+            {
+                getInput();
+                boostManager();
+            }
 
         }
         void FixedUpdate()
         {
-            if (playerState != PlayerState.STOP)
-                movePlayer();
+            if (photonView.isMine)
+            {
+                if (playerState != PlayerState.STOP)
+                    movePlayer();
+            }
         }
 
         public void speedUp()
@@ -86,22 +93,31 @@ namespace Comp476A3
         private void getInput()
         {
             if (Input.GetKey(KeyCode.W))
-            {
-                nextDirect = PlayerDirection.UP;
+            {   
+                if(inputValid(0))
+                    nextDirect = PlayerDirection.UP;
             }
             if (Input.GetKey(KeyCode.D))
             {
-                nextDirect = PlayerDirection.RIGHT;
+                if (inputValid(1))
+                    nextDirect = PlayerDirection.RIGHT;
             }
             if (Input.GetKey(KeyCode.S))
             {
-                nextDirect = PlayerDirection.DOWN;
+                if (inputValid(2))
+                    nextDirect = PlayerDirection.DOWN;
             }
             if (Input.GetKey(KeyCode.A))
             {
-                nextDirect = PlayerDirection.LEFT;
+                if (inputValid(3))
+                 nextDirect = PlayerDirection.LEFT;
             }
             restoreMovement();
+        }
+
+        bool inputValid(int i)
+        {
+            return destination.GetComponent<Pellet>().neighbours[i] != null;
         }
         private PlayerDirection GetDirection()
         {

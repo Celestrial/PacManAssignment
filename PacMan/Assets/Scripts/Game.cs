@@ -12,7 +12,7 @@ namespace Comp476A3
         public static int pacWomanScore = 0;
         Board boardScript;
         bool isServer = true;
-        bool ready = false;
+        //bool ready = false;
         // Use this for initialization
         void Start()
         {
@@ -28,12 +28,12 @@ namespace Comp476A3
         // Update is called once per frame
         void Update()
         {
-            if (!ready)
-            {
-                GameObject tempPacMan = (GameObject)Instantiate(pacMan, boardScript.startPos1.transform.position, Quaternion.LookRotation(Vector3.up));
-                GameObject tempPacWoman = (GameObject)Instantiate(pacWoman, boardScript.startPos2.transform.position, Quaternion.LookRotation(Vector3.up));
-                ready = true;
-            }
+            //if (!ready)
+            //{
+            //    GameObject tempPacMan = (GameObject)Instantiate(pacMan, boardScript.startPos1.transform.position, Quaternion.LookRotation(Vector3.up));
+            //    GameObject tempPacWoman = (GameObject)Instantiate(pacWoman, boardScript.startPos2.transform.position, Quaternion.LookRotation(Vector3.up));
+            //    ready = true;
+            //}
         }
     }
 }

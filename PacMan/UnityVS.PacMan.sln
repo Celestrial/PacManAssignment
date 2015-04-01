@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityVS.PacMan.CSharp", "UnityVS.PacMan.CSharp.csproj", "{F3CC3126-0308-FE12-9C63-FDF0A7542F48}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityVS.PacMan.CSharp.Plugins", "UnityVS.PacMan.CSharp.Plugins.csproj", "{C08F8286-5BFF-2ECB-1EEB-0458940BAD73}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityVS.PacMan.CSharp.Editor", "UnityVS.PacMan.CSharp.Editor.csproj", "{26581C62-E033-3F3C-AB9E-062FFB2688FA}"
+EndProject
 Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "PackManPlus", "..\PackManPlus\PackManPlus.modelproj", "{31870CF6-8AB6-46CC-8E6F-9237A9E31CD1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PackManPlusLib", "..\PackManPlusLib\PackManPlusLib.csproj", "{0AC4DD72-BC52-46F8-B741-0A5A4EC60F89}"
@@ -17,6 +21,14 @@ Global
 		{F3CC3126-0308-FE12-9C63-FDF0A7542F48}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3CC3126-0308-FE12-9C63-FDF0A7542F48}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3CC3126-0308-FE12-9C63-FDF0A7542F48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C08F8286-5BFF-2ECB-1EEB-0458940BAD73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C08F8286-5BFF-2ECB-1EEB-0458940BAD73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C08F8286-5BFF-2ECB-1EEB-0458940BAD73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C08F8286-5BFF-2ECB-1EEB-0458940BAD73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26581C62-E033-3F3C-AB9E-062FFB2688FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26581C62-E033-3F3C-AB9E-062FFB2688FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26581C62-E033-3F3C-AB9E-062FFB2688FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26581C62-E033-3F3C-AB9E-062FFB2688FA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{31870CF6-8AB6-46CC-8E6F-9237A9E31CD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{31870CF6-8AB6-46CC-8E6F-9237A9E31CD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31870CF6-8AB6-46CC-8E6F-9237A9E31CD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
