@@ -7,7 +7,7 @@ namespace Comp476A3
 {
     public enum PlayerState
     {
-        NORMAL, SPEEDUP, STOP
+        NORMAL, SPEEDUP, STOP, WAITING
     };
     public enum PlayerDirection
     {

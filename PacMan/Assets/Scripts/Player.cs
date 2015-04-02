@@ -40,7 +40,7 @@ namespace Comp476A3
             //photonView.RPC("addPlayer", PhotonTargets.OthersBuffered);
             pacManStartPos = GameObject.Find("Plane.163");
             pacWomanStartPos = GameObject.Find("Plane.085");
-            playerState = PlayerState.NORMAL;
+            playerState = PlayerState.WAITING;
             direction = PlayerDirection.UP;
             if (this.name == "PacManPC(Clone)")
             {
@@ -56,22 +56,35 @@ namespace Comp476A3
         // Update is called once per frame
         void Update()
         {
-            if (photonView.isMine)
-            {
-                getInput();
-                boostManager();
-            }
-
+            if (playerState == PlayerState.WAITING && PhotonNetwork.countOfPlayers == 2)
+                photonView.RPC("startGame", PhotonTargets.All);
+            if(playerState != PlayerState.WAITING)
+                if (photonView.isMine)
+                {
+                    getInput();
+                    boostManager();
+                }
+        }
+        [RPC]
+        void startGame()
+        {
+            playerState = PlayerState.NORMAL;
         }
         void FixedUpdate()
         {
             if (photonView.isMine)
             {
-                if (playerState != PlayerState.STOP)
+                if (playerState != PlayerState.WAITING && playerState != PlayerState.STOP)
                     movePlayer();
             }
         }
-
+        public void playEatSound()
+        {
+            if (photonView.isMine)
+            {
+                PhotonNetwork.Instantiate("Eat_Sound_Effect", transform.position, Quaternion.identity, 0);
+            }
+        }
         public void speedUp()
         {
             speedBoost = true;

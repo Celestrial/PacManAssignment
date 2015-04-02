@@ -160,6 +160,7 @@
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\PortalScript.cs" />
      <Compile Include="Assets\Scripts\States.cs" />
+     <Compile Include="Assets\autoDestruct.cs" />
      <None Include="Assets\Plugins\Photon3Unity3D.xml" />
      <None Include="Assets\Photon Unity Networking\Demos\MarcoPolo-Tutorial\marcopolo-readme.txt" />
      <None Include="Assets\Plugins\release_history.txt" />

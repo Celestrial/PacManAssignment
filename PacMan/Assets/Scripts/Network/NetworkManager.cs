@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace Comp476A3
 {
-    public class NetworkManager : MonoBehaviour
+    public class NetworkManager : Photon.MonoBehaviour
     {
         private const string VERSION = "1.0.0";
         public string roomName = "buffet";

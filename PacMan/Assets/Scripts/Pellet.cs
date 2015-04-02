@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace Comp476A3
 {
-    public class Pellet : MonoBehaviour
+    public class Pellet : Photon.MonoBehaviour
     {
         public const float RAY_LENGTH = 0.02f;
         public GameObject[] neighbours = new GameObject[4]; //ORDER IS: UP, RIGHT, DOWN, LEFT
@@ -36,6 +36,8 @@ namespace Comp476A3
             }
             else if (!eaten)
             {
+                
+                other.GetComponent<Player>().playEatSound();
                 if (other.name == "PacManPC(Clone)")
                     Game.pacManScore += 1;
                 else
