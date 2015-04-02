@@ -29,6 +29,7 @@ namespace Comp476A3
             if (Special && !eaten)
             {
                 other.GetComponent<Player>().speedUp();
+                other.GetComponent<Player>().playEatSound(2);
                 if (other.name == "PacManPC(Clone)")
                     Game.pacManScore += 5;
                 else
@@ -36,8 +37,7 @@ namespace Comp476A3
             }
             else if (!eaten)
             {
-                
-                other.GetComponent<Player>().playEatSound();
+                other.GetComponent<Player>().playEatSound(1);
                 if (other.name == "PacManPC(Clone)")
                     Game.pacManScore += 1;
                 else

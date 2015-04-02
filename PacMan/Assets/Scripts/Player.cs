@@ -30,8 +30,8 @@ namespace Comp476A3
         #endregion
 
         #region Network Variables
-        Vector3 syncPosition;
-        int syncDirection; //1= up, 2 = right, 3 = down, 4 = left 
+        //Vector3 syncPosition;
+        //int syncDirection; //1= up, 2 = right, 3 = down, 4 = left 
         #endregion
 
         // Use this for initialization
@@ -65,6 +65,27 @@ namespace Comp476A3
                     boostManager();
                 }
         }
+
+        //void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info)
+        //{
+        //    if (stream.isWriting)
+        //    {
+        //        Vector3 syncPosition = transform.position;
+        //        Quaternion rotation = transform.rotation;
+        //        stream.Serialize(ref syncPosition);
+        //        stream.Serialize(ref rotation);
+        //    }
+        //    if (stream.isReading)
+        //    {
+        //        Vector3 syncPosition = Vector3.zero;
+        //        Quaternion rotation = Quaternion.identity;
+        //        stream.Serialize(ref syncPosition);
+        //        stream.Serialize(ref rotation);
+        //        transform.position = syncPosition;
+        //        transform.rotation = rotation;
+        //    }
+        //}
+
         [RPC]
         void startGame()
         {
@@ -78,11 +99,14 @@ namespace Comp476A3
                     movePlayer();
             }
         }
-        public void playEatSound()
+        public void playEatSound(int soundID)
         {
             if (photonView.isMine)
             {
-                PhotonNetwork.Instantiate("Eat_Sound_Effect", transform.position, Quaternion.identity, 0);
+                if(soundID == 1)
+                    PhotonNetwork.Instantiate("Eat_Sound_Effect", transform.position, Quaternion.identity, 0);
+                else if(soundID == 2)
+                    PhotonNetwork.Instantiate("Pacman_Eating_Special", transform.position, Quaternion.identity, 0);
             }
         }
         public void speedUp()
@@ -187,7 +211,7 @@ namespace Comp476A3
                     else
                     {
                         destination = temp;
-                       // transform.rotation = Quaternion.LookRotation(Vector3.right);
+                        transform.rotation = Quaternion.LookRotation(Vector3.right);
                     }
                     break;
 
