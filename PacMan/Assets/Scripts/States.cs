@@ -17,4 +17,8 @@ namespace Comp476A3
     {
         WAITING, PLAYING, GAMEOVER
     };
+    public enum GhostState
+    {
+        WANDER, LERPING, NAVIGATING
+    };
 }

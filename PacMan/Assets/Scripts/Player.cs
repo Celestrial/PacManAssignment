@@ -37,7 +37,7 @@ namespace Comp476A3
         // Use this for initialization
         void Start()
         {
-            photonView.RPC("addPlayer", PhotonTargets.OthersBuffered);
+            //photonView.RPC("addPlayer", PhotonTargets.OthersBuffered);
             pacManStartPos = GameObject.Find("Plane.163");
             pacWomanStartPos = GameObject.Find("Plane.085");
             playerState = PlayerState.NORMAL;

@@ -26,24 +26,25 @@ namespace Comp476A3
             PhotonNetwork.JoinOrCreateRoom(roomName, roomOptions, TypedLobby.Default);
         }
 
-        [RPC]
-        void addPlayer()
-        {
-            ++playerCount;
-        }
+        //[RPC]
+        //void addPlayer()
+        //{
+        //    ++playerCount;
+        //}
 
         void OnJoinedRoom()
         {
             GameObject tempPacMan;
             GameObject tempPacWoman;
-            if (!ready)
+            playerCount = PhotonNetwork.countOfPlayers;
+            if (playerCount == 1)
             {
-                if (playerCount == 0)
-                {
-                    tempPacMan = (GameObject)PhotonNetwork.Instantiate("PacManPC", boardScript.startPos1.transform.position, Quaternion.LookRotation(Vector3.up), 0);
-                }
-                else
-                    tempPacWoman = (GameObject)PhotonNetwork.Instantiate("PacWomanPC", boardScript.startPos2.transform.position, Quaternion.LookRotation(Vector3.up), 0);
+                tempPacMan = (GameObject)PhotonNetwork.Instantiate("PacManPC", boardScript.startPos1.transform.position, Quaternion.LookRotation(Vector3.up), 0);
+                ++playerCount;
+            }
+            else
+            {
+                tempPacWoman = (GameObject)PhotonNetwork.Instantiate("PacWomanPC", boardScript.startPos2.transform.position, Quaternion.LookRotation(Vector3.up), 0);
                 ready = true;
             }
         }
