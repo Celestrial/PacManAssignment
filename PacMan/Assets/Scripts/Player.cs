@@ -42,7 +42,7 @@ namespace Comp476A3
             pacWomanStartPos = GameObject.Find("Plane.085");
             playerState = PlayerState.WAITING;
             direction = PlayerDirection.UP;
-            if (this.name == "PacManPC(Clone)")
+            if (this.name == "pacManSphere(Clone)")
             {
                 SetOrigin(pacManStartPos);
             }
