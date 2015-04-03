@@ -39,7 +39,9 @@ namespace Comp476A3
             playerCount = PhotonNetwork.countOfPlayers;
             if (playerCount == 1)
             {
-                tempPacMan = (GameObject)PhotonNetwork.Instantiate("PacManPC", boardScript.startPos1.transform.position, Quaternion.LookRotation(Vector3.up), 0);
+                tempPacMan = (GameObject)PhotonNetwork.Instantiate("PacManPC", boardScript.startPos1.transform.position, Quaternion.LookRotation(Vector3.up, Vector3.forward), 0);
+                //tempPacMan = (GameObject)PhotonNetwork.Instantiate("pacManSphere", boardScript.startPos1.transform.position, Quaternion.LookRotation(Vector3.up, Vector3.forward), 0);
+
                 ++playerCount;
             }
             else
