@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace Comp476A3
 {
-    public class Ghost : MonoBehaviour
+    public class Ghost : Photon.MonoBehaviour
     {
         public int ghostID;
         Vector3 target = Vector3.zero;
@@ -13,18 +13,22 @@ namespace Comp476A3
         float timer = 0;
         int releaseGhost = 0;
         const int TIME_TO_RELEASE = 8;
+        bool gameStarted = false;
         GhostState ghostState;
 
         // Use this for initialization
         void Start()
         {
-            ghostState = GhostState.WANDER;
+            ghostState = GhostState.WAITING;
         }
 
         // Update is called once per frame
         void Update()
         {
-
+            if (!gameStarted && PhotonNetwork.countOfPlayers == 2)
+            {
+                photonView.RPC("startGame", PhotonTargets.All);
+            }
         }
 
         void FixedUpdate()
@@ -62,10 +66,11 @@ namespace Comp476A3
             }
         }
 
-
+        [RPC]
         void startGame()
         {
             ghostState = GhostState.WANDER;
+            gameStarted = true;
         }
         void release()
         {
