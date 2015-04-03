@@ -11,7 +11,6 @@ namespace Comp476A3
         public string pacWomanPrefab = "pacWoman";
         public GameObject gameboard;
         public int playerCount = 0;
-        bool ready = false;
         Board boardScript;
         // Use this for initialization
         void Start()
@@ -25,12 +24,6 @@ namespace Comp476A3
             RoomOptions roomOptions = new RoomOptions() { isVisible = false, maxPlayers = 2 };
             PhotonNetwork.JoinOrCreateRoom(roomName, roomOptions, TypedLobby.Default);
         }
-
-        //[RPC]
-        //void addPlayer()
-        //{
-        //    ++playerCount;
-        //}
 
         void OnJoinedRoom()
         {
@@ -47,7 +40,6 @@ namespace Comp476A3
             else
             {
                 tempPacWoman = (GameObject)PhotonNetwork.Instantiate("PacWomanPC", boardScript.startPos2.transform.position, Quaternion.LookRotation(Vector3.up), 0);
-                ready = true;
             }
         }
     }

@@ -17,7 +17,7 @@ namespace Comp476A3
         #region PRIVATE VARIABLES
         GameObject      destination;//destination tile 
         GameObject      Origin;//tile Player is comming from
-        Vector3         Position;//current player position
+        //Vector3         Position;//current player position
         PlayerDirection direction; //UP, DOWN, LEFT, RIGHT
         PlayerDirection nextDirect;
         PlayerState     playerState; //NORMAL , SPEEDUP, STOP
@@ -65,26 +65,6 @@ namespace Comp476A3
                     boostManager();
                 }
         }
-
-        //void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info)
-        //{
-        //    if (stream.isWriting)
-        //    {
-        //        Vector3 syncPosition = transform.position;
-        //        Quaternion rotation = transform.rotation;
-        //        stream.Serialize(ref syncPosition);
-        //        stream.Serialize(ref rotation);
-        //    }
-        //    if (stream.isReading)
-        //    {
-        //        Vector3 syncPosition = Vector3.zero;
-        //        Quaternion rotation = Quaternion.identity;
-        //        stream.Serialize(ref syncPosition);
-        //        stream.Serialize(ref rotation);
-        //        transform.position = syncPosition;
-        //        transform.rotation = rotation;
-        //    }
-        //}
 
         [RPC]
         void startGame()
@@ -197,7 +177,7 @@ namespace Comp476A3
                     else
                     {
                         destination = temp;
-                        //transform.rotation = Quaternion.LookRotation(Vector3.up);
+                        transform.rotation = Quaternion.LookRotation(Vector3.up, Vector3.forward);
                     }
                     break;
 
@@ -211,7 +191,7 @@ namespace Comp476A3
                     else
                     {
                         destination = temp;
-                        transform.rotation = Quaternion.LookRotation(Vector3.right);
+                        transform.rotation = Quaternion.LookRotation(-Vector3.right, Vector3.forward);
                     }
                     break;
 
@@ -225,7 +205,7 @@ namespace Comp476A3
                     else
                     {
                         destination = temp;
-                        //transform.LookAt(-Vector3.up);
+                        transform.rotation = Quaternion.LookRotation(-Vector3.up, Vector3.forward);
                     }
                     break;
 
@@ -239,7 +219,7 @@ namespace Comp476A3
                     else
                     {
                         destination = temp;
-                        //transform.LookAt(-Vector3.right);
+                        transform.rotation = Quaternion.LookRotation(Vector3.right, Vector3.forward);
                     }
                     break;
             }
