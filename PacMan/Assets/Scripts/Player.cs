@@ -71,6 +71,10 @@ namespace Comp476A3
         {
             playerState = PlayerState.NORMAL;
         }
+        //void OnDrawGizmos() //DEBUG
+        //{
+        //    Gizmos.DrawSphere(transform.position, 0.15f);
+        //}
         void FixedUpdate()
         {
             if (photonView.isMine)

@@ -10,6 +10,8 @@ namespace Comp476A3
         public string pacManPrefab = "pacMan";
         public string pacWomanPrefab = "pacWoman";
         public GameObject gameboard;
+        public static int player1ViewID;
+        public static int player2ViewID;
         public int playerCount = 0;
         Board boardScript;
         // Use this for initialization
@@ -34,13 +36,16 @@ namespace Comp476A3
             {
                 //tempPacMan = (GameObject)PhotonNetwork.Instantiate("PacManPC", boardScript.startPos1.transform.position, Quaternion.LookRotation(Vector3.up, Vector3.forward), 0);
                 tempPacMan = (GameObject)PhotonNetwork.Instantiate("pacManSphere", boardScript.startPos1.transform.position, Quaternion.LookRotation(Vector3.up, Vector3.forward), 0);
-
+                player1ViewID = tempPacMan.GetComponent<PhotonView>().viewID;
+                //Debug.Log("Player1 ID: " + player1ViewID);
                 ++playerCount;
             }
             else
             {
                 //tempPacWoman = (GameObject)PhotonNetwork.Instantiate("PacWomanPC", boardScript.startPos2.transform.position, Quaternion.LookRotation(Vector3.up), 0);
                 tempPacWoman = (GameObject)PhotonNetwork.Instantiate("pacWomanSphere", boardScript.startPos2.transform.position, Quaternion.LookRotation(Vector3.up), 0);
+                player2ViewID = tempPacWoman    .GetComponent<PhotonView>().viewID;
+
             }
         }
     }
