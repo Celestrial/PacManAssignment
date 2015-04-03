@@ -3,59 +3,70 @@ using System.Collections;
 
 namespace Comp476A3
 {
-    public class Ghost : MonoBehaviour {
+    public class Ghost : MonoBehaviour
+    {
         public int ghostID;
         Vector3 target = Vector3.zero;
         GameObject destination;
         GameObject origin;
         Vector3 tempPos;
         float timer = 0;
-        static int releaseGhost = 0;
+        int releaseGhost = 0;
+        const int TIME_TO_RELEASE = 8;
         GhostState ghostState;
 
-	    // Use this for initialization
-	    void Start () {
+        // Use this for initialization
+        void Start()
+        {
             ghostState = GhostState.WANDER;
-	    }
-	
-	    // Update is called once per frame
-	    void Update () {
-	        
-	    }
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
 
         void FixedUpdate()
         {
-            if (releaseGhost < 4)
+            if (ghostState != GhostState.WAITING)
             {
-                if (timer > 10)
+                if (releaseGhost < 4)
                 {
-                    if (releaseGhost == ghostID)
+                    if (timer > TIME_TO_RELEASE * (1 + ghostID))
                     {
+
                         release();
                         ++releaseGhost;
-                        timer = 0;
+                    }
+                    else
+                    {
+                        timer += Time.deltaTime;
                     }
                 }
-                else
+
+                if (ghostState == GhostState.WANDER)
                 {
-                    timer += Time.deltaTime;
+                    transform.position = transform.position + new Vector3(0, 0, 1f) * Mathf.Cos(Time.time) * .0005f;
+                }
+                if (ghostState == GhostState.LERPING)
+                {
+                    //transform.position = Vector3.Lerp(tempPos, destination.transform.position, .0001f)*Time.deltaTime; 
+                    transform.position = destination.transform.position;
+
+                }
+                if (ghostState == GhostState.NAVIGATING)
+                {
+
                 }
             }
-
-            if (ghostState == GhostState.WANDER)
-            {
-                transform.position = transform.position + new Vector3(0, 0, 1f) * Mathf.Cos(Time.time) * .0005f;
-            }
-            if (ghostState == GhostState.LERPING)
-            {
-                transform.position = Vector3.Lerp(tempPos, destination.transform.position, .1f)*Time.deltaTime; 
-            }
-            if (ghostState == GhostState.NAVIGATING)
-            {
-
-            }
         }
-        
+
+
+        void startGame()
+        {
+            ghostState = GhostState.WANDER;
+        }
         void release()
         {
             tempPos = transform.position;

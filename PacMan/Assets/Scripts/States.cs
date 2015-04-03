@@ -19,6 +19,6 @@ namespace Comp476A3
     };
     public enum GhostState
     {
-        WANDER, LERPING, NAVIGATING
+        WANDER, LERPING, NAVIGATING, WAITING
     };
 }
