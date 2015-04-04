@@ -131,6 +131,8 @@ namespace Comp476A3
         }
         GameObject getBestTile()//RETURN BEST TILE TO GET TO TARGET AND NOT GO BACKWARDS
         {
+            if (destination.tag == "Portal")
+                return destination;
             GameObject[] options = destination.GetComponent<Pellet>().neighbours;
             int shortestTile = -1;
             float shortestLength = 5;
@@ -150,6 +152,15 @@ namespace Comp476A3
             }
             return options[shortestTile];
         }
+
+        public void setOrigin(GameObject exit)
+        {
+            transform.position = exit.transform.position;
+            origin = exit;
+            destination = exit;
+            destination = getBestTile();
+        }
+
         [RPC]
         void startGame()
         {

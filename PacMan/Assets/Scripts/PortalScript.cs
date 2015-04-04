@@ -20,7 +20,10 @@ namespace Comp476A3
 
         void OnTriggerEnter(Collider other)
         {
-            other.gameObject.GetComponent<Player>().SetOrigin(exit);
+            if (other.gameObject.tag == "Player")
+                other.gameObject.GetComponent<Player>().SetOrigin(exit);
+            else
+                other.gameObject.GetComponent<Ghost>().setOrigin(exit);
         }
     }
 }

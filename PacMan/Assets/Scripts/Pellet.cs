@@ -26,11 +26,14 @@ namespace Comp476A3
 
         void OnTriggerEnter(Collider other)
         {
+            if (other.transform.tag != "Player")
+                return;
             if (Special && !eaten)
             {
-                other.GetComponent<Player>().speedUp();
-                other.GetComponent<Player>().playEatSound(2);
-                if (other.name == "PacManPC(Clone)")
+                Player tempPlayerScript = other.GetComponent<Player>();
+                tempPlayerScript.speedUp();
+                tempPlayerScript.playEatSound(2);
+                if (other.name == "pacManSphere(Clone)")
                     Game.pacManScore += 5;
                 else
                     Game.pacWomanScore += 5;
@@ -38,7 +41,7 @@ namespace Comp476A3
             else if (!eaten)
             {
                 other.GetComponent<Player>().playEatSound(1);
-                if (other.name == "PacManPC(Clone)")
+                if (other.name == "pacManSphere(Clone)")
                     Game.pacManScore += 1;
                 else
                     Game.pacWomanScore += 1;
