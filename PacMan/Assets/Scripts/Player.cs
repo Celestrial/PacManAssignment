@@ -44,7 +44,8 @@ namespace Comp476A3
             pacManStartPos = GameObject.Find("Plane.163");
             pacWomanStartPos = GameObject.Find("Plane.085");
             playerState = PlayerState.WAITING;
-            resetPosition();            
+            resetPosition();
+            transform.Find("SmokeTrail").gameObject.SetActive(false);
         }
 
         // Update is called once per frame
@@ -85,6 +86,8 @@ namespace Comp476A3
 
         public void killed()
         {
+            if (speedBoost)
+                speedBoostTimer += BOOST_TIME_LIMIT;
             if (!invulnerable )
             {
                 if (photonView.isMine)
@@ -141,6 +144,7 @@ namespace Comp476A3
         }
         public  void speedUp()
         {
+            transform.Find("SmokeTrail").gameObject.SetActive(true);
             speedBoost = true;
         }
         private void boostManager()
@@ -152,6 +156,7 @@ namespace Comp476A3
                 {
                     speedBoost = false;
                     speedBoostTimer = 0;
+                    transform.Find("SmokeTrail").gameObject.renderer.enabled = false;
                 }
             }
         }
