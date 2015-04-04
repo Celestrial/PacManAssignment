@@ -83,6 +83,13 @@ namespace Comp476A3
                 }
             }
         }
+        void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.tag == "Player")
+            {
+                other.GetComponent<Player>().killed();
+            }
+        }
         void pingPlayer()
         {
             Vector3 player = GameObject.Find("pacManSphere(Clone)").transform.position;

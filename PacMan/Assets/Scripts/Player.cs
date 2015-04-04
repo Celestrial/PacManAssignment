@@ -27,6 +27,9 @@ namespace Comp476A3
         const float BOOST_SPEED = 0.075f;
         bool speedBoost = false;
         float speedBoostTimer = 0f;
+        bool invulnerable = false;
+        float invulnerableTimer = 0f;
+        const int INVULNERABLE_TIME = 3;
         #endregion
 
         #region Network Variables
@@ -41,7 +44,57 @@ namespace Comp476A3
             pacManStartPos = GameObject.Find("Plane.163");
             pacWomanStartPos = GameObject.Find("Plane.085");
             playerState = PlayerState.WAITING;
+            resetPosition();            
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            if (playerState == PlayerState.WAITING && PhotonNetwork.countOfPlayers == 2)
+                photonView.RPC("startGame", PhotonTargets.All);
+            if (playerState != PlayerState.WAITING)
+            {
+                if (photonView.isMine)
+                {
+                    getInput();
+                    boostManager();
+                }
+            }
+            if (invulnerable && invulnerableTimer < INVULNERABLE_TIME)
+            {
+                invulnerableTimer += Time.deltaTime;
+            }
+            else
+            {
+                invulnerable = false;
+                invulnerableTimer = 0;
+            }
+        }
+
+        void OnCollisionEnter(Collision other)
+        {
+            //if (!invulnerable && other.gameObject.tag == "Ghost")
+            //{
+            //    invulnerable = true;
+            //    invulnerableTimer = 0;
+            //    resetPosition();
+            //}
+        }
+
+        public void killed()
+        {
+            if (!invulnerable )
+            {
+                invulnerable = true;
+                invulnerableTimer = 0;
+                resetPosition();
+            }
+        }
+
+        void resetPosition()
+        {
             direction = PlayerDirection.UP;
+            transform.rotation = Quaternion.LookRotation(Vector3.up, Vector3.forward);
             if (this.name == "pacManSphere(Clone)")
             {
                 SetOrigin(pacManStartPos);
@@ -50,24 +103,11 @@ namespace Comp476A3
             {
                 SetOrigin(pacWomanStartPos);
             }
-            
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-            if (playerState == PlayerState.WAITING && PhotonNetwork.countOfPlayers == 2)
-                photonView.RPC("startGame", PhotonTargets.All);
-            if(playerState != PlayerState.WAITING)
-                if (photonView.isMine)
-                {
-                    getInput();
-                    boostManager();
-                }
-        }
-
+        #region PRIVATE FUNCTIONS
         [RPC]
-        void startGame()
+                void startGame()
         {
             playerState = PlayerState.NORMAL;
         }
@@ -75,7 +115,7 @@ namespace Comp476A3
         //{
         //    Gizmos.DrawSphere(transform.position, 0.15f);
         //}
-        void FixedUpdate()
+                void FixedUpdate()
         {
             if (photonView.isMine)
             {
@@ -83,7 +123,7 @@ namespace Comp476A3
                     movePlayer();
             }
         }
-        public void playEatSound(int soundID)
+        public  void playEatSound(int soundID)
         {
             if (photonView.isMine)
             {
@@ -93,12 +133,10 @@ namespace Comp476A3
                     PhotonNetwork.Instantiate("Pacman_Eating_Special", transform.position, Quaternion.identity, 0);
             }
         }
-        public void speedUp()
+        public  void speedUp()
         {
             speedBoost = true;
         }
-
-        #region PRIVATE FUNCTIONS
         private void boostManager()
         {
             if (speedBoost)
@@ -135,8 +173,7 @@ namespace Comp476A3
             }
             restoreMovement();
         }
-
-        bool inputValid(int i)
+                bool inputValid(int i)
         {
             return destination.GetComponent<Pellet>().neighbours[i] != null;
         }
@@ -232,7 +269,7 @@ namespace Comp476A3
         {
             destination = target;
         }
-        public void SetOrigin(GameObject org)
+        public  void SetOrigin(GameObject org)
         {
             transform.position = org.transform.position;
             Origin = org;
