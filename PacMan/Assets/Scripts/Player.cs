@@ -90,6 +90,7 @@ namespace Comp476A3
                 speedBoostTimer += BOOST_TIME_LIMIT;
             if (!invulnerable )
             {
+                PhotonNetwork.Instantiate("DeathEffect", transform.position, Quaternion.identity, 0);
                 if (photonView.isMine)
                 {
                     Instantiate(Resources.Load("haha") as GameObject, Camera.main.transform.position, Quaternion.identity);

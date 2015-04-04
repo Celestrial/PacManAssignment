@@ -46,6 +46,8 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Fx Explosion Pack\Script\DestroyEffect.cs" />
+     <Compile Include="Assets\Fx Explosion Pack\Script\csLightControl.cs" />
      <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\CustomTypes.cs" />
      <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\Enums.cs" />
      <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\Extensions.cs" />
@@ -111,6 +113,7 @@
      <Compile Include="Assets\Scripts\Network\NetworkPlayer.cs" />
      <Compile Include="Assets\Scripts\Pellet.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
+     <Compile Include="Assets\Scripts\PortalEffectScript.cs" />
      <Compile Include="Assets\Scripts\PortalScript.cs" />
      <Compile Include="Assets\Scripts\ScoreManager.cs" />
      <Compile Include="Assets\Scripts\States.cs" />

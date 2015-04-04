@@ -21,3 +21,4 @@ C:\Users\celestrial\Documents\PacManAssignment\PacMan\obj\Debug\Assembly-CSharp-
 C:\Users\celestrial\Documents\PacManAssignment\PacMan\obj\Debug\Assembly-CSharp-Editor.pdb
 C:\Users\celestrial\Documents\PacManAssignment\PacMan\Temp\UnityVS_bin\Debug\Assembly-CSharp.pdb
 C:\Users\celestrial\Documents\PacManAssignment\PacMan\Temp\UnityVS_bin\Debug\Assembly-CSharp-firstpass.pdb
+C:\Users\celestrial\Documents\PacManAssignment\PacMan\Temp\UnityVS_bin\Debug\Assembly-UnityScript.dll

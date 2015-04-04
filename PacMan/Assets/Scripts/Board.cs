@@ -12,7 +12,10 @@ namespace Comp476A3
         // Use this for initialization
         void Start()
         {
-
+            //transform.Find("PortalEffect1a").gameObject.SetActive(false);
+            //transform.Find("PortalEffect1b").gameObject.SetActive(false);
+            //transform.Find("PortalEffect2a").gameObject.SetActive(false);
+            //transform.Find("PortalEffect2b").gameObject.SetActive(false);
         }
 
         // Update is called once per frame
