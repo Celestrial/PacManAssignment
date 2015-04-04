@@ -50,8 +50,10 @@ namespace Comp476A3
         // Update is called once per frame
         void Update()
         {
-            if (playerState == PlayerState.WAITING && PhotonNetwork.countOfPlayers == 2)
-                photonView.RPC("startGame", PhotonTargets.All);
+            //if (playerState == PlayerState.WAITING && PhotonNetwork.countOfPlayers == 2)
+            //    photonView.RPC("startGame", PhotonTargets.All);
+            if (Game.gameState == GameState.PLAYING)
+                startGame();
             if (playerState != PlayerState.WAITING)
             {
                 if (photonView.isMine)
@@ -85,6 +87,10 @@ namespace Comp476A3
         {
             if (!invulnerable )
             {
+                if (photonView.isMine)
+                {
+                    Instantiate(Resources.Load("haha") as GameObject, Camera.main.transform.position, Quaternion.identity);
+                }
                 invulnerable = true;
                 invulnerableTimer = 0;
                 resetPosition();
@@ -107,7 +113,7 @@ namespace Comp476A3
 
         #region PRIVATE FUNCTIONS
         [RPC]
-                void startGame()
+        void startGame()
         {
             playerState = PlayerState.NORMAL;
         }

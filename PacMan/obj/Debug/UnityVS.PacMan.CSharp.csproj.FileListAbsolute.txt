@@ -10,5 +10,5 @@ C:\Users\celestrial\Documents\PacManAssignment\PacMan\Temp\UnityVS_bin\Debug\Uni
 C:\Users\celestrial\Documents\PacManAssignment\PacMan\Temp\UnityVS_bin\Debug\UnityEditor.xml
 C:\Users\celestrial\Documents\PacManAssignment\PacMan\Temp\UnityVS_bin\Debug\UnityEngine.UI.xml
 C:\Users\celestrial\Documents\PacManAssignment\PacMan\Temp\UnityVS_bin\Debug\Photon3Unity3D.dll
-C:\Users\celestrial\Documents\PacManAssignment\PacMan\Temp\UnityVS_bin\Debug\Assembly-CSharp-firstpass.pdb
 C:\Users\celestrial\Documents\PacManAssignment\PacMan\Temp\UnityVS_bin\Debug\Photon3Unity3D.xml
+C:\Users\celestrial\Documents\PacManAssignment\PacMan\Temp\UnityVS_bin\Debug\Assembly-CSharp-firstpass.pdb

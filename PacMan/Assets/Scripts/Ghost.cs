@@ -182,6 +182,7 @@ namespace Comp476A3
             tempPos = transform.position;
             origin = destination = GameObject.Find("Plane.072");
             ghostState = GhostState.LERPING;
+            PhotonNetwork.Instantiate("FairyDust", transform.position, Quaternion.identity, 0);
         }
 
         [RPC]

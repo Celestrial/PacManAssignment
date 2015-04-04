@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace Comp476A3
 {
-    public class Game : MonoBehaviour
+    public class Game : Photon.MonoBehaviour
     {
         public GameObject pacMan;
         public GameObject pacWoman;
@@ -12,28 +12,29 @@ namespace Comp476A3
         public static int pacWomanScore = 0;
         Board boardScript;
         bool isServer = true;
+        public static GameState gameState = GameState.WAITING;
         //bool ready = false;
         // Use this for initialization
         void Start()
         {
             boardScript = gameboard.GetComponent<Board>();
-            //GameObject tempPacMan = (GameObject)Instantiate(pacMan, boardScript.startPos1.transform.position, Quaternion.LookRotation(Vector3.up));
-            //GameObject tempPacWoman = (GameObject)Instantiate(pacWoman, boardScript.startPos2.transform.position, Quaternion.LookRotation(Vector3.up));
-            //if (isServer)
-            //    tempPacMan.GetComponent<Player>().setAvatar(pacMan);
-            //else
-            //    tempPacMan.GetComponent<Player>().setAvatar(pacWoman);
         }
 
         // Update is called once per frame
         void Update()
         {
-            //if (!ready)
-            //{
-            //    GameObject tempPacMan = (GameObject)Instantiate(pacMan, boardScript.startPos1.transform.position, Quaternion.LookRotation(Vector3.up));
-            //    GameObject tempPacWoman = (GameObject)Instantiate(pacWoman, boardScript.startPos2.transform.position, Quaternion.LookRotation(Vector3.up));
-            //    ready = true;
-            //}
+            if (Game.gameState == GameState.WAITING && PhotonNetwork.countOfPlayers == 2)
+                photonView.RPC("startGame", PhotonTargets.All);
+            if (pacManScore + pacWomanScore == 330)
+            {
+                gameState = GameState.GAMEOVER;
+            }
+        }
+
+        [RPC]
+        void startGame()
+        {
+            gameState = GameState.PLAYING;
         }
     }
 }
