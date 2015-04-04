@@ -92,17 +92,19 @@ namespace Comp476A3
         }
         void pingPlayer()
         {
-            Vector3 player = GameObject.Find("pacManSphere(Clone)").transform.position;
+            //CHOOSE RANDOMLY BETWEEN TO PACFOLKS WHO WILL BE TARGETED
+            Vector3 player;
+            int randomTarget = Random.Range(1, 2);
+
+            if(randomTarget == 1)
+                player = GameObject.Find("pacManSphere(Clone)").transform.position;
+            else
+                player = GameObject.Find("pacWomanSphere(Clone)").transform.position;
+
             Collider[] hits = Physics.OverlapSphere(player, Random.Range(.05f, .15f),1 << PELLET_LAYER);
-            //foreach (Collider pellet in hits)
-            //{
-                int destPellet = Random.Range(0, hits.Length);
-                //if (pellet.tag != "Pellet")
-                //{
-                //    Debug.LogError("Not a Pellet: " + pellet.name);
-                //}
-                updateTarget(ref hits[destPellet]);
-            //}
+
+            int destPellet = Random.Range(0, hits.Length);
+            updateTarget(ref hits[destPellet]);
         }
         void updateTarget(ref Collider target)
         {
@@ -135,6 +137,7 @@ namespace Comp476A3
             GameObject tempOrigin = destination;
             destination = getBestTile();
             origin = tempOrigin;
+            transform.rotation = Quaternion.LookRotation((destination.transform.position - origin.transform.position), Vector3.forward);
         }
         GameObject getBestTile()//RETURN BEST TILE TO GET TO TARGET AND NOT GO BACKWARDS
         {
