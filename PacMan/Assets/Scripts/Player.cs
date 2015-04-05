@@ -52,7 +52,7 @@ namespace Comp476A3
                     startGame();
                 if (playerState != PlayerState.WAITING)
                 {
-                    if(!speedBoost)
+                    if (!speedBoost)
                         smokeTrail.SetActive(false);
                     if (photonView.isMine)
                     {

@@ -10,6 +10,9 @@ namespace Comp476A3
         public GameObject gameboard;
         public static int pacManScore = 0;
         public static int pacWomanScore = 0;
+        public GameObject PMWinSign;
+        public GameObject PWWinSign;
+        public GameObject WINImg;
         Board boardScript;
         bool isServer = true;
         public static GameState gameState = GameState.WAITING;
@@ -28,6 +31,12 @@ namespace Comp476A3
             if (pacManScore + pacWomanScore == 330)
             {//SET TO GAME OVER WHEN ALL PELLETS EATEN
                 gameState = GameState.GAMEOVER;
+                WINImg.SetActive(true);
+                if (pacManScore > pacWomanScore)
+                    PMWinSign.SetActive(true);
+                else
+                    PWWinSign.SetActive(true);
+                    
             }
         }
 
