@@ -127,7 +127,6 @@
     <Compile Include="Assets\Scripts\Game.cs" />
     <Compile Include="Assets\Scripts\Ghost.cs" />
     <Compile Include="Assets\Scripts\Network\NetworkManager.cs" />
-    <Compile Include="Assets\Scripts\Network\NetworkPlayer.cs" />
     <Compile Include="Assets\Scripts\Pellet.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\PortalEffectScript.cs" />

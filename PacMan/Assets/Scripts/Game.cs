@@ -26,13 +26,13 @@ namespace Comp476A3
             if (Game.gameState == GameState.WAITING && PhotonNetwork.countOfPlayers == 2)
                 photonView.RPC("startGame", PhotonTargets.All);
             if (pacManScore + pacWomanScore == 330)
-            {
+            {//SET TO GAME OVER WHEN ALL PELLETS EATEN
                 gameState = GameState.GAMEOVER;
             }
         }
 
         [RPC]
-        void startGame()
+        void startGame()//CHANGE STATE TO START GAME
         {
             gameState = GameState.PLAYING;
         }

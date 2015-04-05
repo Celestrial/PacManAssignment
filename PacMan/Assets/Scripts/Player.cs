@@ -17,9 +17,8 @@ namespace Comp476A3
         #region PRIVATE VARIABLES
         GameObject      destination;//destination tile 
         GameObject      Origin;//tile Player is comming from
-        //Vector3         Position;//current player position
         PlayerDirection direction; //UP, DOWN, LEFT, RIGHT
-        PlayerDirection nextDirect;
+        PlayerDirection nextDirect;//TEMP DIRECTION TO ALLOW LEAWAY WHEN MOVING
         PlayerState     playerState; //NORMAL , SPEEDUP, STOP
         const float ACCEPT_RADIUS = 0.0005f;
         const float BOOST_TIME_LIMIT = 10f;
@@ -32,15 +31,9 @@ namespace Comp476A3
         const int INVULNERABLE_TIME = 3;
         #endregion
 
-        #region Network Variables
-        //Vector3 syncPosition;
-        //int syncDirection; //1= up, 2 = right, 3 = down, 4 = left 
-        #endregion
-
         // Use this for initialization
         void Start()
         {
-            //photonView.RPC("addPlayer", PhotonTargets.OthersBuffered);
             pacManStartPos = GameObject.Find("Plane.163");
             pacWomanStartPos = GameObject.Find("Plane.085");
             playerState = PlayerState.WAITING;
@@ -51,7 +44,6 @@ namespace Comp476A3
         // Update is called once per frame
         void Update()
         {
-
             if (Game.gameState == GameState.PLAYING)
                 startGame();
             if (playerState != PlayerState.WAITING)
@@ -81,17 +73,7 @@ namespace Comp476A3
             }
         }
 
-        void OnCollisionEnter(Collision other)
-        {
-            //if (!invulnerable && other.gameObject.tag == "Ghost")
-            //{
-            //    invulnerable = true;
-            //    invulnerableTimer = 0;
-            //    resetPosition();
-            //}
-        }
-
-        public void killed()
+        public void killed()//DISPLAY EFFECTS AND SOUND, AND RESET POSITION
         {
             if (speedBoost)
                 speedBoostTimer += BOOST_TIME_LIMIT;
@@ -109,7 +91,7 @@ namespace Comp476A3
             }
         }
 
-        void resetPosition()
+        void resetPosition()//RESET POSITION
         {
             direction = PlayerDirection.UP;
             transform.rotation = Quaternion.LookRotation(Vector3.up, Vector3.forward);
@@ -125,14 +107,10 @@ namespace Comp476A3
 
         #region PRIVATE FUNCTIONS
         [RPC]
-        void startGame()
+        void startGame()//CHANGE STATE TO START GAME
         {
             playerState = PlayerState.NORMAL;
         }
-        //void OnDrawGizmos() //DEBUG
-        //{
-        //    Gizmos.DrawSphere(transform.position, 0.15f);
-        //}
         public  void playEatSound(int soundID)
         {
             if (photonView.isMine)
@@ -143,12 +121,12 @@ namespace Comp476A3
                     PhotonNetwork.Instantiate("Pacman_Eating_Special", transform.position, Quaternion.identity, 0);
             }
         }
-        public  void speedUp()
+        public  void speedUp()//SPEED UP AND CREATE SMOKE TRAIL
         {
             transform.Find("SmokeTrail").gameObject.SetActive(true);
             speedBoost = true;
         }
-        private void boostManager()
+        private void boostManager()//MANAGE BOOST DURATION ETC
         {
             if (speedBoost)
             {
@@ -161,7 +139,7 @@ namespace Comp476A3
                 }
             }
         }
-        private void getInput()
+        private void getInput()//HANDLE USER INPUT
         {
             if (Input.GetKey(KeyCode.W))
             {   
@@ -193,11 +171,8 @@ namespace Comp476A3
         {
             return direction;
         }
-        private void movePlayer()
+        private void movePlayer()//MOVE PLAYER IN CURRENT DIRECTION, MODE ACCEPT RADIUS BASED ON SPEED
         {
-            //if(destination != null)//DEBUG LINE
-
-
             if (transform.position == destination.transform.position)
             {
                 direction = nextDirect;
@@ -215,7 +190,7 @@ namespace Comp476A3
                         (speedBoost ? BOOST_SPEED : BASE_SPEED) * Time.deltaTime;
             }
         }
-        private void changeDestination()
+        private void changeDestination()//SWITCH DIRECTION STATE
         {
             GameObject temp;
             switch (direction)
@@ -281,7 +256,7 @@ namespace Comp476A3
         {
             destination = target;
         }
-        public  void SetOrigin(GameObject org)
+        public  void SetOrigin(GameObject org)//UPDATE ORIGIN TILE
         {
             transform.position = org.transform.position;
             Origin = org;

@@ -24,7 +24,7 @@ namespace Comp476A3
 
         }
 
-        void OnTriggerEnter(Collider other)
+        void OnTriggerEnter(Collider other)//HANDLE PELLET EATING AND POWER UPS
         {
             if (other.transform.tag != "Player")
                 return;
@@ -49,8 +49,7 @@ namespace Comp476A3
             eaten = true;
             transform.renderer.enabled = false;
         }
-
-        private void DebugLines()
+        private void DebugLines()//DEBUG CODE
         {
             Debug.DrawLine(transform.position, transform.position + transform.up * RAY_LENGTH, Color.magenta);
             Debug.DrawLine(transform.position, transform.position + transform.right * RAY_LENGTH, Color.blue);
@@ -61,7 +60,7 @@ namespace Comp476A3
         {
             colorFlashSpeed();
         }
-        private void colorFlashSpeed()
+        private void colorFlashSpeed()//MANAGE THE FLASH SPEED
         {
             if (Special && timer > .1f)
             {
@@ -73,12 +72,12 @@ namespace Comp476A3
                 timer += Time.deltaTime;
             }
         }
-        void colorFlash()
+        void colorFlash()//APPLY RANDOM COLORS TO SPECIAL PELLETS
         {
             Vector3 color = new Vector3(Random.RandomRange(0f, 1f), Random.RandomRange(0f, 1f), Random.RandomRange(0f, 1f));
             transform.renderer.material.color = new Color(color.x, color.y, color.z);
         }
-        void getNeighbours()
+        void getNeighbours()//REGISTER NEIGHBORS OF PELLETS
         {
             RaycastHit hit;
             Physics.Linecast(transform.position, transform.position + transform.up * RAY_LENGTH, out hit);

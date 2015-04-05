@@ -11,7 +11,8 @@ public class PortalEffectScript : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+    void Update() //FLASH EFFECT WHEN SOMEONE GOES THROUGH PORTAL
+    {
         if (gameObject.active == true)
         {
             if (timer > 1.5f)

@@ -11,20 +11,13 @@ namespace Comp476A3
         public GameObject startPos2;
         // Use this for initialization
         void Start()
-        {
-            //transform.Find("PortalEffect1a").gameObject.SetActive(false);
-            //transform.Find("PortalEffect1b").gameObject.SetActive(false);
-            //transform.Find("PortalEffect2a").gameObject.SetActive(false);
-            //transform.Find("PortalEffect2b").gameObject.SetActive(false);
-        }
+        {        }
 
         // Update is called once per frame
         void Update()
-        {
+        {        }
 
-        }
-
-        public Vector3 getPlayerStartPos(int playerNo)
+        public Vector3 getPlayerStartPos(int playerNo)//LOAD POSITION OF START TILES
         {
             if (playerNo == 1)
                 return startPos1.transform.position;

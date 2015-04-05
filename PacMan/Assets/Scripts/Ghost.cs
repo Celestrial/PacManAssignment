@@ -23,6 +23,7 @@ namespace Comp476A3
         // Use this for initialization
         void Start()
         {
+            //SET STATE WHILE GHOSTS ARE IN BOX
             ghostState = GhostState.WAITING;
         }
 
@@ -30,13 +31,15 @@ namespace Comp476A3
         void Update()
         {
             if (!gameStarted && PhotonNetwork.countOfPlayers == 2)
-            {
+            {   
+                //SEND OUT RPC TO GHOST TO START RELEASE TIMER
                 photonView.RPC("startGame", PhotonTargets.All);
             }
         }
 
         void FixedUpdate()
         {
+            //RELEASE GHOSTS EVERY "TIME_TO_RELEASE" SECONDS
             if (ghostState != GhostState.WAITING)
             {
                 if (releaseGhost < 4)
@@ -52,18 +55,18 @@ namespace Comp476A3
                         timer += Time.deltaTime;
                     }
                 }
-
+                //MOVE AROUND IN BOX
                 if (ghostState == GhostState.WANDER)
                 {
                     transform.position = transform.position + new Vector3(0, 0, 1f) * Mathf.Cos(Time.time) * .0005f;
                 }
+                //TRANSITION FROM BOX TO NODES
                 if (ghostState == GhostState.LERPING)
                 {
-                    //transform.position = Vector3.Lerp(tempPos, destination.transform.position, .0001f)*Time.deltaTime; 
                     transform.position = destination.transform.position;
                     ghostState = GhostState.NAVIGATING;
-
                 }
+                //NAVIGATE TO PLAYERS
                 if (ghostState == GhostState.NAVIGATING)
                 {
                     if (pingTimer == 0)//ping player location and update navigation info
@@ -87,10 +90,12 @@ namespace Comp476A3
         {
             if (other.gameObject.tag == "Player")
             {
+                //KILL PLAYER ON COLLISION
                 other.GetComponent<Player>().killed();
             }
         }
-        void pingPlayer()
+
+        void pingPlayer()//PICK A TILE IN THE SURROUNDING AREA OF THE PLAYER
         {
             //CHOOSE RANDOMLY BETWEEN TO PACFOLKS WHO WILL BE TARGETED
             Vector3 player;
@@ -100,17 +105,18 @@ namespace Comp476A3
                 player = GameObject.Find("pacManSphere(Clone)").transform.position;
             else
                 player = GameObject.Find("pacWomanSphere(Clone)").transform.position;
-
+            //GET SURROUNDING TILES, AND PICK ONE AT RANDOM
             Collider[] hits = Physics.OverlapSphere(player, Random.Range(.05f, .15f),1 << PELLET_LAYER);
 
             int destPellet = Random.Range(0, hits.Length);
             updateTarget(ref hits[destPellet]);
         }
-        void updateTarget(ref Collider target)
+
+        void updateTarget(ref Collider target)//SET TARGET TILE
         {
             this.target = target.transform.position;
         }
-        void move()
+        void move()//MOVEMENT SCRIPT
         {
             Debug.DrawLine(transform.position, target, Color.magenta);
             if ((transform.position - destination.transform.position).magnitude < ACCEPT_RADIUS)
@@ -163,7 +169,7 @@ namespace Comp476A3
             return options[shortestTile];
         }
 
-        public void setOrigin(GameObject exit)
+        public void setOrigin(GameObject exit)//SET START TILE OF GHOST
         {
             transform.position = exit.transform.position;
             origin = exit;
@@ -172,12 +178,12 @@ namespace Comp476A3
         }
 
         [RPC]
-        void startGame()
+        void startGame()//SWITCH STATE TO START GAME
         {
             ghostState = GhostState.WANDER;
             gameStarted = true;
         }
-        void release()
+        void release()//RELEASE GHOST FROM BOX
         {
             tempPos = transform.position;
             origin = destination = GameObject.Find("Plane.072");
@@ -186,7 +192,7 @@ namespace Comp476A3
         }
 
         [RPC]
-        void setTarget(int gID, Vector3 target)
+        void setTarget(int gID, Vector3 target)//SET NEW TARGET TILE
         {
             this.target = target;
         }
