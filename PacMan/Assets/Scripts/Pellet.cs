@@ -74,7 +74,7 @@ namespace Comp476A3
         }
         void colorFlash()//APPLY RANDOM COLORS TO SPECIAL PELLETS
         {
-            Vector3 color = new Vector3(Random.RandomRange(0f, 1f), Random.RandomRange(0f, 1f), Random.RandomRange(0f, 1f));
+            Vector3 color = new Vector3(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
             transform.renderer.material.color = new Color(color.x, color.y, color.z);
         }
         void getNeighbours()//REGISTER NEIGHBORS OF PELLETS

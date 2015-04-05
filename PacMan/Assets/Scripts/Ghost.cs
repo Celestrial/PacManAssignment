@@ -101,7 +101,7 @@ namespace Comp476A3
         {
             //CHOOSE RANDOMLY BETWEEN TO PACFOLKS WHO WILL BE TARGETED
             Vector3 player;
-            int randomTarget = Random.Range(1, 2);
+            int randomTarget = Random.Range(1, 3);
 
             if(randomTarget == 1)
                 player = GameObject.Find("pacManSphere(Clone)").transform.position;
