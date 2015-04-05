@@ -29,6 +29,7 @@ namespace Comp476A3
         bool invulnerable = false;
         float invulnerableTimer = 0f;
         const int INVULNERABLE_TIME = 3;
+        GameObject smokeTrail;
         #endregion
 
         // Use this for initialization
@@ -38,39 +39,46 @@ namespace Comp476A3
             pacWomanStartPos = GameObject.Find("Plane.085");
             playerState = PlayerState.WAITING;
             resetPosition();
-            transform.Find("SmokeTrail").gameObject.SetActive(false);
+            smokeTrail = transform.Find("SmokeTrail").gameObject;
+            smokeTrail.SetActive(false);
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (Game.gameState == GameState.PLAYING)
-                startGame();
-            if (playerState != PlayerState.WAITING)
+            if (Game.gameState != GameState.GAMEOVER)
             {
-                if (photonView.isMine)
+                if (Game.gameState == GameState.PLAYING)
+                    startGame();
+                if (playerState != PlayerState.WAITING)
                 {
-                    getInput();
-                    boostManager();
+                    if(!speedBoost)
+                        smokeTrail.SetActive(false);
+                    if (photonView.isMine)
+                    {
+                        getInput();
+                        boostManager();
+                    }
                 }
-            }
-            if (invulnerable && invulnerableTimer < INVULNERABLE_TIME)
-            {
-                invulnerableTimer += Time.deltaTime;
-            }
-            else
-            {
-                invulnerable = false;
-                invulnerableTimer = 0;
+                if (invulnerable && invulnerableTimer < INVULNERABLE_TIME)
+                {
+                    invulnerableTimer += Time.deltaTime;
+                }
+                else
+                {
+                    invulnerable = false;
+                    invulnerableTimer = 0;
+                }
             }
         }
         void FixedUpdate()
         {
-            if (photonView.isMine)
-            {
-                if (playerState != PlayerState.WAITING && playerState != PlayerState.STOP)
-                    movePlayer();
-            }
+            if(Game.gameState != GameState.GAMEOVER)
+                if (photonView.isMine)
+                {
+                    if (playerState != PlayerState.WAITING && playerState != PlayerState.STOP)
+                        movePlayer();
+                }
         }
 
         public void killed()//DISPLAY EFFECTS AND SOUND, AND RESET POSITION

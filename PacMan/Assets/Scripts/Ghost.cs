@@ -30,61 +30,63 @@ namespace Comp476A3
         // Update is called once per frame
         void Update()
         {
-            if (!gameStarted && PhotonNetwork.countOfPlayers == 2)
-            {   
-                //SEND OUT RPC TO GHOST TO START RELEASE TIMER
-                photonView.RPC("startGame", PhotonTargets.All);
-            }
+            if (Game.gameState != GameState.GAMEOVER)
+                if (!gameStarted && PhotonNetwork.countOfPlayers == 2)
+                {   
+                    //SEND OUT RPC TO GHOST TO START RELEASE TIMER
+                    photonView.RPC("startGame", PhotonTargets.All);
+                }
         }
 
         void FixedUpdate()
         {
-            //RELEASE GHOSTS EVERY "TIME_TO_RELEASE" SECONDS
-            if (ghostState != GhostState.WAITING)
-            {
-                if (releaseGhost < 4)
+            if (Game.gameState != GameState.GAMEOVER)
+                //RELEASE GHOSTS EVERY "TIME_TO_RELEASE" SECONDS
+                if (ghostState != GhostState.WAITING)
                 {
-                    if (timer > TIME_TO_RELEASE * (1 + ghostID))
+                    if (releaseGhost < 4)
                     {
+                        if (timer > TIME_TO_RELEASE * (1 + ghostID))
+                        {
 
-                        release();
-                        ++releaseGhost;
+                            release();
+                            ++releaseGhost;
+                        }
+                        else
+                        {
+                            timer += Time.deltaTime;
+                        }
                     }
-                    else
+                    //MOVE AROUND IN BOX
+                    if (ghostState == GhostState.WANDER)
                     {
-                        timer += Time.deltaTime;
+                        transform.position = transform.position + new Vector3(0, 0, 1f) * Mathf.Cos(Time.time) * .0005f;
+                    }
+                    //TRANSITION FROM BOX TO NODES
+                    if (ghostState == GhostState.LERPING)
+                    {
+                        transform.position = destination.transform.position;
+                        ghostState = GhostState.NAVIGATING;
+                    }
+                    //NAVIGATE TO PLAYERS
+                    if (ghostState == GhostState.NAVIGATING)
+                    {
+                        if (pingTimer == 0)//ping player location and update navigation info
+                        {
+                            pingPlayer();
+                            pingTimer += Time.deltaTime;
+                        }
+                        else if (pingTimer < 10)
+                        {
+                            pingTimer += Time.deltaTime;
+                        }
+                        else
+                        {
+                            pingTimer = 0;
+                        }
+                        move();
                     }
                 }
-                //MOVE AROUND IN BOX
-                if (ghostState == GhostState.WANDER)
-                {
-                    transform.position = transform.position + new Vector3(0, 0, 1f) * Mathf.Cos(Time.time) * .0005f;
-                }
-                //TRANSITION FROM BOX TO NODES
-                if (ghostState == GhostState.LERPING)
-                {
-                    transform.position = destination.transform.position;
-                    ghostState = GhostState.NAVIGATING;
-                }
-                //NAVIGATE TO PLAYERS
-                if (ghostState == GhostState.NAVIGATING)
-                {
-                    if (pingTimer == 0)//ping player location and update navigation info
-                    {
-                        pingPlayer();
-                        pingTimer += Time.deltaTime;
-                    }
-                    else if (pingTimer < 10)
-                    {
-                        pingTimer += Time.deltaTime;
-                    }
-                    else
-                    {
-                        pingTimer = 0;
-                    }
-                    move();
-                }
-            }
         }
         void OnTriggerEnter(Collider other)
         {
